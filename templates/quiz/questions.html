@@ -23,20 +23,11 @@
         {% endfor %}
         <center>
             <div class="form-group">
-                <button class="btn" id="save_ans"> Submit Answer</button>
-            </div>
-
-            <div class="form-group">
-{#                {% if page.has_previous %}#}
-{#                    <a class="btnaa"#}
-{#                       href="{% url 'questions' questions.id %}?page={{ page.previous_page_number }}">Previous#}
-{#                        Question</a>#}
-{#                {% endif %}#}
                 {% if page.has_next %}
-                    <a class="btnaa" id="submitAnswer"
+                    <a class="btnaa" id="save_ans"
                        href="{% url 'questions' questions.id %}?page={{ page.next_page_number }}">Next Question</a>
                 {% else %}
-                    <a class="btnaa" id="submitAnswer" href="{% url 'questions' questions.id %}result/">Result</a>
+                    <a class="btnaa" id="save_ans" href="{% url 'questions' questions.id %}result/">Result</a>
                 {% endif %}
             </div>
         </center>
