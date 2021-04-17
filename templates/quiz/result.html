@@ -3,8 +3,5 @@
 {% block site_content %}
     This is your result !
     <h5>{{ score }} of {{ count }}</h5>
-    <form action="{% url 'delete' %}">
-    {% csrf_token %}
-        <a class="btn btn-primary" href="{% url 'landing page' %}">Clear</a>
-    </form>
+    <a class="btn btn-primary" href="{% url 'landing page' %}">Clear</a>
 {% endblock %}

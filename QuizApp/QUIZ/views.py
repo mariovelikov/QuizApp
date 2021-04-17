@@ -1,15 +1,15 @@
 from django.shortcuts import render
-from django.views.generic import *
+# from django.views.generic import *
 from .models import *
 from django.core.paginator import Paginator
 
-lst = []
-anslist = []
+CurrentAnsList = []
+CorrectAnslist = []
 
 
 def LandingPage(request):
-    lst.clear()
-    anslist.clear()
+    CurrentAnsList.clear()
+    CorrectAnslist.clear()
     context = {
         'model': QuizModel.objects.all()
     }
@@ -21,8 +21,7 @@ def LandingPage(request):
 def quiz_data(request, pk):
     test = QuizModel.objects.get(pk=pk)
     for x in test.get_questions():
-        anslist.append(x.correctOpt)
-        print()
+        CorrectAnslist.append(x.correctOpt)
 
     test = QuizModel.objects.get(pk=pk)
     paginator = Paginator(test.get_questions(), 1)
@@ -40,26 +39,21 @@ def quiz_data(request, pk):
 
 def saveans(request, pk):
     ans = request.GET['ans']
-    lst.append(ans)
+    CurrentAnsList.append(ans)
 
 
 def result(request, pk):
     score = 0
 
-    for i in range(len(lst)):
-        if lst[i] == anslist[i]:
+    for i in range(len(CurrentAnsList)):
+        if CurrentAnsList[i] == CorrectAnslist[i]:
             score += 1
         else:
             score += 0
 
     context = {
         'score': score,
-        'count': lst.count
+        'count': CurrentAnsList.count
     }
 
     return render(request, 'quiz/result.html', context)
-
-
-def delete(request):
-    lst.clear()
-    print(lst)
