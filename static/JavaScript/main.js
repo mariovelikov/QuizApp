@@ -1,7 +1,5 @@
 window.onload = initall()
 var saveBtn;
-var urla = window.location.href
-const reader = new FileReader()
 
 
 function initall() {
