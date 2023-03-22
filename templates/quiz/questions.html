@@ -1,38 +1,66 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block site_content %}
-    <center><h5>{{ page.number }} of {{ count }}</h5></center>
-    <div class="question-block">
-        {% for x in page.object_list %}
-            <h5>{{ x.title }}</h5>
-            <form>
-                <div class="radio">
-                    <label><input class= "radio" type="radio" id="option1" name="name" value="{{ x.option1 }}">{{ x.option1 }}
-                    </label>
-                </div>
-                <div class="radio">
-                    <label><input class= "radio" type="radio" id="option2" name="name" value="{{ x.option2 }}">{{ x.option2 }}
-                    </label>
-                </div>
-                <div class="radio">
-                    <label><input class= "radio" type="radio" id="option3" name="name" value="{{ x.option3 }}">{{ x.option3 }}
-                    </label>
-                </div>
-            </form>
-        {% endfor %}
-        <center>
-            <div class="form-group">
-                {% if page.has_next %}
-                    <a class="btnaa" id="save_ans"
-                       href="{% url 'questions' questions.id %}?page={{ page.next_page_number }}">Next Question</a>
-                {% else %}
-                    <a class="btnaa" id="save_ans" href="{% url 'questions' questions.id %}result/">Result</a>
-                {% endif %}
-            </div>
-        </center>
+{% extends 'base.html' %} {% load static %} {% block site_content %}
+<center><h5>{{ page.number }} of {{ count }}</h5></center>
+<div id="countTime"></div>
+<div class="question-block">
+  {% for x in page.object_list %}
+  <h5>{{ x.title }}</h5>
+  <form>
+    <div class="radio">
+      <label
+        ><input
+          class="radio"
+          type="radio"
+          id="option1"
+          name="name"
+          value="{{ x.option1 }}"
+        />{{ x.option1 }}
+      </label>
     </div>
-    {% block JsBlock %}
-        <script src="{% static 'JavaScript/main.js' %}"></script>
-    {% endblock %}
-{% endblock %}
+    <div class="radio">
+      <label
+        ><input
+          class="radio"
+          type="radio"
+          id="option2"
+          name="name"
+          value="{{ x.option2 }}"
+        />{{ x.option2 }}
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input
+          class="radio"
+          type="radio"
+          id="option3"
+          name="name"
+          value="{{ x.option3 }}"
+        />{{ x.option3 }}
+      </label>
+    </div>
+  </form>
+  {% endfor %}
+  <center>
+    <div class="form-group">
+      {% if page.has_next %}
+      <a
+        class="btnaa"
+        id="save_ans"
+        href="{% url 'questions' questions.id %}?page={{ page.next_page_number }}"
+        >Next Question</a
+      >
+      {% else %}
+      <a
+        class="btnaa"
+        id="save_ans"
+        href="{% url 'questions' questions.id %}result/"
+        >Result</a
+      >
+      {% endif %}
+    </div>
+    <div id="listener"></div>
+  </center>
+</div>
+{% block JsBlock %}
+<script src="{% static 'JavaScript/main.js' %}"></script>
+{% endblock %} {% endblock %}

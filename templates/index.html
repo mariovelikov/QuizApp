@@ -1,11 +1,17 @@
-{% extends 'base.html' %}
-
-{% block site_content %}
-    <center><h6> Quiz </h6></center>
-    <div class="question-block">
-        <h5>Choose the Quiz: </h5>
-        {% for i in model %}
-            <a class="index-a" href="{% url 'questions' i.id %}">{{ i.title }}</a>
-        {% endfor %}
-    </div>
-{% endblock %}
+{% extends 'base.html' %} {% load static %} {% block site_content %}
+<center><h6>Quiz</h6></center>
+<div class="question-block">
+  <h5>Choose the Quiz:</h5>
+  {% for i in model %}
+  <a
+    class="index-a"
+    id="startBtn"
+    onclick="timeout()"
+    href="{% url 'questions' i.id %}"
+    >{{ i.title }}</a
+  >
+  {% endfor %}
+</div>
+{#
+<script src="{% static 'JavaScript/mixin.js' %}"></script>
+#} {% endblock %}

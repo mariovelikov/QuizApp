@@ -6,5 +6,4 @@ urlpatterns = [
     path('<int:pk>/', views.quiz_data, name='questions'),
     path('<int:pk>/result/', views.result, name='quiz result'),
     path('<int:pk>/saveans/', views.saveans, name='save answer'),
-    path('', views.delete, name='delete')
 ]

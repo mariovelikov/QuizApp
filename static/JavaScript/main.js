@@ -1,17 +1,15 @@
-window.onload = initAll()
-var saveBtn;
-
+window.onload = initAll;
 
 function initAll() {
-    saveBtn = document.getElementById('save_ans')
-    saveBtn.onclick = saveAns
+    let saveBtn = document.getElementById('save_ans');
+    saveBtn.addEventListener('click', saveAns)
 }
 
 function saveAns() {
-    var ans = $('input:radio[name=name]:checked').val()
+    const ans = document.querySelector('input:checked').value;
 
-    var req = new XMLHttpRequest();
-    var url = 'saveans?ans=' + ans
+    let req = new XMLHttpRequest();
+    let url = 'saveans?ans=' + ans
 
     req.open('GET', url, true)
     req.send()
